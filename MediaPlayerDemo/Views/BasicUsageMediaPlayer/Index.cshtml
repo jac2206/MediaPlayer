@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Basic Usage Media Player";
+}
+
+@*@(Html.Kendo().MediaPlayer()
+            .AutoPlay(true) // Start playing the video as soon as it loads.
+            .Navigatable(true) // Enable the keyboard navigation.
+            .AutoRepeat(true) // Loop the video.
+            .ForwardSeek(false) // Disable forward seeking to ensure viewers will watch the entire video.
+            .FullScreen(false) // When set to true, the player will automatically enter the full-screen mode.
+            .Mute(true) // Start without sound.
+            .Volume(20) // Preset the volume level (0 - 100).
+            .Media(m => m // Define the media file - a YouTube video in this case.
+                .Title("Getting Started with Telerik UI for ASP.NET MVC on Windows")
+                .Source("https://www.youtube.com/watch?v=AIFNeWrZCdM")
+            )
+            .Name("mediaPlayer") // The name of the widget that is used for the ID and for referencing it at runtime.
+            .HtmlAttributes(new { style = "height:360px; width:640px" })
+)*@
+
+<div class="demo-section k-content wide" style="max-width: 644px;">
+    @(Html.Kendo().MediaPlayer()
+            .AutoPlay(true)
+            .Navigatable(true)
+            .Media(m => m
+                .Title("ProgressNEXT 2019 Highlights")
+            .Source("https://www.youtube.com/watch?v=_l09H-3zzgA"))
+            .Name("mediaPlayer")
+            .HtmlAttributes(new { style = "height:360px" })
+            .AutoPlay(false)
+    )
+</div>
+
+<div class="demo-section k-content wide" style="max-width: 644px;">
+    @(Html.Kendo().MediaPlayer()
+            .AutoPlay(true)
+            .Navigatable(true)
+            .Media(m => m
+            .Title("Local")
+            .Source(new[] {
+                     new { quality = "Video 1", url = Url.Content("~/Video/y2mate.com%20-%20The%20Strokes%20%20Under%20Cover%20of%20Darkness%20Official%20Music%20Video_360p%20(1).mp4") },
+                     new { quality = "Video 2", url = Url.Content("~/Video/y2mate.com%20-%20The%20Strokes%20%20You%20Only%20Live%20Once%20Official%20Music%20Video_v240P.mp4") }
+                }))
+            .Name("mediaPlayerLocal")
+            .HtmlAttributes(new { style = "height:360px" })
+            .AutoPlay(false)
+            .Volume(30)
+    )
+</div>
+
+<video controls="controls">
+    <source src="~/Video/y2mate.com%20-%20The%20Strokes%20%20Under%20Cover%20of%20Darkness%20Official%20Music%20Video_360p%20(1).mp4" type="video/mp4" />
+</video>
