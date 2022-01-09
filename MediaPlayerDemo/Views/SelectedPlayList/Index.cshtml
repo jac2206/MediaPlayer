@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Seleccionar Lista de reproduccion";
+}
+
+<div class="demo-section k-content">
+    <div>
+        <h4>Lista Reproducción</h4>
+        <p>
+            @*@Html.ActionLink("The Strokes", "Index", "PlayList", new { variable = "btn btn-danger" }, new { @class = "btn btn-danger" })*@
+
+            @Html.ActionLink("The Strokes", "Index", "PlayList", new { videos = "theStrokes" }, new { @class = "btn btn-danger" })
+
+            @Html.ActionLink("Telerik", "Index", "PlayList", new { videos = "telerik" }, new { @class = "btn btn-danger" })
+
+            @*@(Html.Kendo().Button()
+        .Name("theStrokesListButton")
+        .HtmlAttributes(new { type = "button", @class = "k-primary" })
+        .Content("The Strokes")
+        .Events(ev => ev.Click("onClick"))
+        )
+
+            @(Html.Kendo().Button()
+        .Name("telerikListButton")
+        .HtmlAttributes(new { type = "button", @class = "k-primary" })
+        .Content("Telerik"))*@
+        </p>
+    </div>
+
+</div>
+
+<!--<script>
+        function onClick(e) {
+            //console.log("event :: click (" + $(e.event.target).closest(".k-button").attr("id") + ")");
+             $.ajax({
+            type: "POST",
+            url: '@Url.Action("SeleccionarListaReproduccion", "SelectedPlayList")',
+            //data: {"idReactor": reactorActual, "idReferencia": referenciaActual },
+            //dataType: "json",
+            success: function (result) {
+                if (result.success) {
+                    //Refresh
+                    window.location.reload();
+                }
+            },
+            error: function (emp) {
+               console.log("Not OK")
+            }
+            });-->
+            @*$.ajax({
+            type: "POST",
+            url: '@Url.Action("SeleccionarListaReproduccion", "SelectedPlayList")',
+            //data: {"idReactor": reactorActual, "idReferencia": referenciaActual },
+            //dataType: "json",
+            success: function (Jdata) {
+                numeric.value(Jdata);
+                e.model.Paso = Jdata;
+
+            },
+            error: function (emp) {
+                alert(emp.text());
+                var popupNotification = $("#popupNotification").data("kendoNotification");
+                popupNotification.show(kendo.toString(emp), "error");
+            }
+            });*@
+        <!--}
+</script>-->
