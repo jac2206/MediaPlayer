@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Play List";
+}
+
+@model IEnumerable<MediaPlayerDemo.Models.Video>
+<div class="demo-section k-content wide" style="max-width: 925px;">
+    @(Html.Kendo().MediaPlayer()
+        .Name("mediaPlayer")
+        .AutoPlay(true)
+        .HtmlAttributes(new { style = "height:360px" })
+    )
+
+    <div class="k-list-container playlist">
+        @(Html.Kendo().ListView<MediaPlayerDemo.Models.Video>(Model)
+            .Name("listView")
+            .TagName("ul")
+            .ClientTemplateId("template")
+            .DataSource(dataSource => dataSource
+                    .ServerOperation(false)
+                )
+            .Selectable()
+            .Events(e => e
+                .Change("onChange")
+                .DataBound("onDataBound")
+                )
+        )
+    </div>
+</div>
+<script>
+    function onChange() {
+        var index = this.select().index();
+        var dataItem = this.dataSource.view()[index];
+        $("#mediaPlayer").data("kendoMediaPlayer").media(dataItem);
+    }
+
+    function onDataBound() {
+        this.select(this.content.children().first());
+    }
+</script>
+
+<script type="text/x-kendo-template" id="template">
+    <li class="k-item k-state-default" onmouseover="$(this).addClass('k-state-hover')"
+        onmouseout="$(this).removeClass('k-state-hover')">
+        <span>
+            <img src="#:poster#" />
+            <h5>#:title#</h5>
+        </span>
+    </li>
+</script>
+
+<style>
+
+    .k-mediaplayer {
+        float: left;
+        box-sizing: border-box;
+        width: 70%;
+    }
+
+    .playlist {
+        float: left;
+        height: 360px;
+        overflow: auto;
+        width: 30%;
+    }
+
+    @@media(max-width: 800px) {
+        .playlist,
+        .k-mediaplayer {
+            width: 100%;
+        }
+    }
+
+    .playlist ul, .playlist li {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .playlist .k-item {
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        padding: 14px 15px;
+    }
+
+        .playlist .k-item:last-child {
+            border-bottom-width: 0;
+        }
+
+    .playlist span {
+        cursor: pointer;
+        display: block;
+        overflow: hidden;
+        text-decoration: none;
+    }
+
+        .playlist span img {
+            border: 0 none;
+            display: block;
+            height: 56px;
+            object-fit: cover;
+            width: 100px;
+            float: left;
+        }
+
+    .playlist h5 {
+        display: block;
+        font-weight: normal;
+        margin: 0;
+        overflow: hidden;
+        padding-left: 10px;
+        text-align: left;
+    }
+</style>
+
