@@ -13,6 +13,12 @@ namespace MediaPlayerDemo
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+           // routes.MapRoute(
+           //    name: "ListaReproduccion",
+           //    url: "{controller}/{action}",
+           //    defaults: new { controller = "PlayList", action = "Index"}
+           //);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

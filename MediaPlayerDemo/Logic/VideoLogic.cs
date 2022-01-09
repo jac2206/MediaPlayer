@@ -8,7 +8,18 @@ namespace MediaPlayerDemo.Logic
 {
     public class VideoLogic
     {
-        public static IEnumerable<Video> GetVideos()
+
+        public static IEnumerable<Video> ObtenerVideos(string nombreVideos)
+        {
+            if(nombreVideos == "theStrokes")
+            {
+                return TheStrokesVideos();
+            }
+            return TelerikVideos();
+        }
+
+
+        private static IEnumerable<Video> TelerikVideos()
         {
             List<Video> videos = new List<Video>();
 
@@ -45,7 +56,7 @@ namespace MediaPlayerDemo.Logic
             return videos;
         }
 
-        public static IEnumerable<Video> TheStrokesGetVideos()
+        private static IEnumerable<Video> TheStrokesVideos()
         {
             List<Video> videos = new List<Video>();
 
