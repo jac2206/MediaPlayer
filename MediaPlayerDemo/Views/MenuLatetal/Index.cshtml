@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Menu Lateral";
+}
+
+<h2>Menu Lateral</h2>
+
+<div>
+    <div>
+        @(Html.Kendo().TreeView()
+            .Name("treeview")
+            //.Checkboxes(true)
+            //.DragAndDrop(true)
+            .Events(events => events
+                //.Change("onChange")
+                .Select("onSelect")
+            //.Check("onCheck")
+            //.Collapse("onCollapse")
+            //.Expand("onExpand")
+            //.DragStart("onDragStart")
+            //.Drag("onDrag")
+            //.Drop("onDrop")
+            //.DragEnd("onDragEnd")
+            //.Navigate("onNavigate")
+            )
+            .Items(treeview =>
+            {
+                treeview.Add().Text("The Strokes")
+                    .Expanded(true)
+                    .Items(furniture =>
+                    {
+                        furniture.Add().Text("Someday");
+                        furniture.Add().Text("Under Cover of Darkness");
+                        furniture.Add().Text("The Adults Are Talking");
+                    });
+
+                treeview.Add().Text("The Beatles")
+                    .Expanded(false)
+                    .Items(furniture =>
+                    {
+                        furniture.Add().Text("Let it be");
+                        furniture.Add().Text("Hey jude");
+                        furniture.Add().Text("All my loving");
+                    });
+            })
+        )
+
+    </div>
+
+
+    <div class="demo-section k-content wide" style="max-width: 644px;">
+            @(Html.Kendo().MediaPlayer()
+            .AutoPlay(true)
+            .Navigatable(true)
+            .Media(m => m
+                .Title("The Strokes")
+            .Source("https://www.youtube.com/watch?v=_l09H-3zzgA"))
+            .Name("mediaPlayer")
+            .HtmlAttributes(new { style = "height:360px" })
+            .AutoPlay(false)
+            )
+    </div>
+
+    </div>
+
+<script>
+    function onSelect(e) {
+        //kendoConsole.log("Selecting: " + this.text(e.node));
+        //console.log(this.text(e.node));
+        var nombreContenido = this.text(e.node)
+        //$("#mediaPlayer").data("kendoMediaPlayer").media({ title: "Prueba", source: "https://www.youtube.com/watch?v=2OGc66e2E9s"});
+                $.ajax({
+            type: "POST",
+            url: '@Url.Action("MostrarContenido", "MenuLatetal")',
+                    data: { "nombreContenido": nombreContenido},
+            dataType: "json",
+            success: function (result) {
+                console.log(result)
+                $("#mediaPlayer").data("kendoMediaPlayer").media({ title: result.titulo, source: result.source});
+            },
+            error: function (emp) {
+               console.log("Not OK")
+            }
+            });
+    }
+</script>
