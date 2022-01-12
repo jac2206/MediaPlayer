@@ -186,6 +186,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BasicUsageMediaPlayerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuLatetalController.cs" />
     <Compile Include="Controllers\PlayListController.cs" />
     <Compile Include="Controllers\SelectedPlayListController.cs" />
     <Compile Include="Global.asax.cs">
@@ -251,6 +252,7 @@
     <Content Include="Views\BasicUsageMediaPlayer\Index.cshtml" />
     <Content Include="Views\PlayList\Index.cshtml" />
     <Content Include="Views\SelectedPlayList\Index.cshtml" />
+    <Content Include="Views\MenuLatetal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
