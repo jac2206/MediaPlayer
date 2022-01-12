@@ -51,7 +51,7 @@ namespace MediaPlayerDemo.Controllers
                                    where vid.title.Contains(nombreContenido)
                                    select vid;
 
-            return Json(new { titulo = videoSeleccinado.FirstOrDefault().title, source = videoSeleccinado.FirstOrDefault().source }, JsonRequestBehavior.AllowGet);
+            return Json(new { titulo = videoSeleccinado.FirstOrDefault().title, source = videoSeleccinado.FirstOrDefault().source, descripcion = videoSeleccinado.FirstOrDefault().description }, JsonRequestBehavior.AllowGet);
 
         }
     }

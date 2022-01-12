@@ -47,9 +47,15 @@
 
     </div>
 
+    <div>
+        <h1>
+            @Html.Label("TituloVideo", "Titulo Video", new {@id = "tituloVideo", width = "100%", style = "color:#ff0000" })
+        </h1>
+    </div>
+
 
     <div class="demo-section k-content wide" style="max-width: 644px;">
-            @(Html.Kendo().MediaPlayer()
+        @(Html.Kendo().MediaPlayer()
             .AutoPlay(true)
             .Navigatable(true)
             .Media(m => m
@@ -61,7 +67,18 @@
             )
     </div>
 
+    <div>
+        @(Html.Kendo().TextArea()
+            .Name("textarea")
+            .Rows(10)
+            //.Events(e => e.Change("onChange"))
+            .HtmlAttributes(new { style = "width: 100%; color:#ff0000 ; font-size: 15px;" })
+            //.Enable(false)
+            .Readonly(true)
+        )
     </div>
+
+</div>
 
 <script>
     function onSelect(e) {
@@ -75,8 +92,11 @@
                     data: { "nombreContenido": nombreContenido},
             dataType: "json",
             success: function (result) {
-                console.log(result)
-                $("#mediaPlayer").data("kendoMediaPlayer").media({ title: result.titulo, source: result.source});
+                //console.log(result)
+                $("#mediaPlayer").data("kendoMediaPlayer").media({ title: result.titulo, source: result.source });
+                $("#tituloVideo").text(result.titulo);
+                $("#textarea").data("kendoTextArea").value(result.descripcion);
+
             },
             error: function (emp) {
                console.log("Not OK")
