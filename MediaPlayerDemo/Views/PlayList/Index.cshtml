@@ -31,6 +31,7 @@
     function onChange() {
         var index = this.select().index();
         var dataItem = this.dataSource.view()[index];
+        console.log(dataItem);
         $("#mediaPlayer").data("kendoMediaPlayer").media(dataItem);
     }
 

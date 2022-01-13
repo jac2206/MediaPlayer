@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Seleccionar Lista de reproduccion";
+}
+
+<div class="demo-section k-content">
+    <div>
+        <h4>Lista Reproducción</h4>
+        <p>
+
+            @Html.ActionLink("The Strokes", "Index", "PlayList", new { videos = "theStrokes" }, new { @class = "btn btn-danger" })
+
+            @Html.ActionLink("Telerik", "Index", "PlayList", new { videos = "telerik" }, new { @class = "btn btn-danger" })
+
+        </p>
+    </div>
+
+</div>

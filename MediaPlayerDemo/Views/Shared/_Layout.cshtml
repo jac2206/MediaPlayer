@@ -9,8 +9,8 @@
     @Scripts.Render("~/bundles/modernizr")
 	<!--This bundle was moved by the Telerik VS Extensions for compatibility reasons-->
 	@Scripts.Render("~/bundles/jquery")
-	<link href="https://cdn.kendostatic.com/2021.3.1207/styles/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="https://cdn.kendostatic.com/2021.3.1207/styles/kendo.bootstrap-main-dark.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdn.kendostatic.com/2021.3.1207/styles/kendo.common-material.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdn.kendostatic.com/2021.3.1207/styles/kendo.material.min.css" rel="stylesheet" type="text/css" />
 	<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
 	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
 	<script src="https://cdn.kendostatic.com/2021.3.1207/js/jquery.min.js"></script>
@@ -35,7 +35,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     <li>@Html.ActionLink("Basic Usage", "Index", "BasicUsageMediaPlayer")</li>
-                    <li>@Html.ActionLink("Play List", "Index", "PlayList")</li>
+                    <li>@Html.ActionLink("Seleccionar Lista Reproducción", "Index", "SelectedPlayList")</li>
+                    <li>@Html.ActionLink("Menu Lateral", "Index", "MenuLatetal")</li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>

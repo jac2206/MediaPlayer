@@ -3,22 +3,6 @@
     ViewBag.Title = "Basic Usage Media Player";
 }
 
-@*@(Html.Kendo().MediaPlayer()
-            .AutoPlay(true) // Start playing the video as soon as it loads.
-            .Navigatable(true) // Enable the keyboard navigation.
-            .AutoRepeat(true) // Loop the video.
-            .ForwardSeek(false) // Disable forward seeking to ensure viewers will watch the entire video.
-            .FullScreen(false) // When set to true, the player will automatically enter the full-screen mode.
-            .Mute(true) // Start without sound.
-            .Volume(20) // Preset the volume level (0 - 100).
-            .Media(m => m // Define the media file - a YouTube video in this case.
-                .Title("Getting Started with Telerik UI for ASP.NET MVC on Windows")
-                .Source("https://www.youtube.com/watch?v=AIFNeWrZCdM")
-            )
-            .Name("mediaPlayer") // The name of the widget that is used for the ID and for referencing it at runtime.
-            .HtmlAttributes(new { style = "height:360px; width:640px" })
-)*@
-
 <div class="demo-section k-content wide" style="max-width: 644px;">
     @(Html.Kendo().MediaPlayer()
             .AutoPlay(true)

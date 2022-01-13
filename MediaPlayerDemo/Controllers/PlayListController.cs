@@ -13,14 +13,14 @@ namespace MediaPlayerDemo.Controllers
     public class PlayListController : Controller
     {
         // GET: PlayList
-        public ActionResult Index()
+        public ActionResult Index(string videos)
         {
-            return View(VideoLogic.TheStrokesGetVideos());
+            return View(VideoLogic.ObtenerVideos(videos));
         }
 
-        public ActionResult Videos_Read([DataSourceRequest] DataSourceRequest request)
+        public ActionResult Videos_Read([DataSourceRequest] DataSourceRequest request, string videos)
         {
-            return Json(VideoLogic.TheStrokesGetVideos().ToDataSourceResult(request));
+            return Json(VideoLogic.ObtenerVideos(videos).ToDataSourceResult(request));
         }
 
        
