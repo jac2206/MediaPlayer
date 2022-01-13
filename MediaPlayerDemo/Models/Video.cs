@@ -14,5 +14,7 @@ namespace MediaPlayerDemo.Models
 
         public string source { get; set; }
 
+        public string description { get; set; }
+
     }
 }
