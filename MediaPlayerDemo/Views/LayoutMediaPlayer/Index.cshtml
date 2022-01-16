@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Layout Media Player";
+}
+
+<script id="tree-view-template" type="text/x-kendo-template">
+
+        @(Html.Kendo().TreeView()
+            .Name("treeview")
+            .Events(events => events
+                .Select("onSelect")
+            )
+            .Items(treeview =>
+            {
+                treeview.Add().Text("Someday");
+                treeview.Add().Text("Under Cover of Darkness");
+                treeview.Add().Text("The Adults Are Talking");
+            })
+            .DataTextField("title")
+            .DataSource(dataSource => dataSource
+            .Read(read => read
+                .Action("ObtenerNombreVideosLista", "LayoutMediaPlayer")
+            )
+        )
+            .ToClientTemplate()
+        )
+</script>
+
+<script id="media-player-template" type="text/x-kendo-template">
+
+        @(Html.Kendo().MediaPlayer()
+            .AutoPlay(true)
+            .Navigatable(true)
+            .Media(m => m
+                .Title("The Strokes")
+            .Source("https://www.youtube.com/watch?v=_l09H-3zzgA"))
+            .Name("mediaPlayer")
+            .HtmlAttributes(new { style = "height:450px" })
+            .AutoPlay(false)
+            .ToClientTemplate()
+            )
+</script>
+
+
+<div style="text-align: center">
+    <h1 style="font-size:600%;">
+        @Html.Label("TituloVideo", "Titulo Video", new { @id = "tituloVideo", width = "100%", style = "color:#ff0000; text-align: center;" })
+    </h1>
+</div>
+
+<div style="text-align: right">
+    <h3>
+        @Html.Label("TituloVideo2", "Titulo Video2", new { @id = "tituloVideo2", width = "100%", style = "color:#ff0000; text-align: center;" })
+    </h3>
+</div>
+
+@*<div style="text-align: right; width: 100%">*@
+<div>
+
+    @(Html.Kendo().TileLayout()
+        .Name("tilelayout")
+        .Columns(3)
+        .RowsHeight("500px")
+        .ColumnsWidth("500px")
+        .Containers(c => {
+            c.Add().Header(h => h.Text("Lista Reproduccion")).BodyTemplateId("tree-view-template").ColSpan(1).RowSpan(1);
+            c.Add().Header(h => h.Text("")).BodyTemplateId("media-player-template").ColSpan(2).RowSpan(1);
+        })
+        .Reorderable(false)
+        .Resizable(false)
+    //.Events(e=>e.Resize("onTileResize"))
+    )
+    @*@(Html.Kendo().TextArea()
+            .Name("textarea")
+            .Rows(10)
+        //.Resizable("horizontal")
+        //.Events(e => e.Change("onChange"))
+        .HtmlAttributes(new { style = "width: 100%; color:#ff0000 ; font-size: 20px; text-align: center" })
+        //.Enable(false)
+        //.Readonly(true)
+        )*@
+
+</div>
+
+<div style="width: 80%; text-align: left;">
+        <h3>
+            @Html.Label("descripcionVideo", " ", new { @id = "descripcionVideo", width = "100%", style = "color:#ff0000; text-align: center;" })
+        </h3>
+</div>
+
+
+<script>
+    function onSelect(e) {
+        var nombreContenido = this.text(e.node)
+                $.ajax({
+            type: "POST",
+            url: '@Url.Action("MostrarContenido", "LayoutMediaPlayer")',
+                    data: { "nombreContenido": nombreContenido},
+            dataType: "json",
+            success: function (result) {
+                $("#mediaPlayer").data("kendoMediaPlayer").media({ title: result.titulo, source: result.source });
+                $("#tituloVideo").text(result.titulo);
+                $("#tituloVideo2").text(result.titulo);
+                //$("#textarea").data("kendoTextArea").value(result.descripcion);
+                $("#descripcionVideo").text(result.descripcion);
+            },
+            error: function (emp) {
+               console.log("Not OK")
+            }
+            });
+    }
+</script>
