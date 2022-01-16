@@ -19,11 +19,42 @@
         <h4>Layout</h4>
         <p>
 
-            @Html.ActionLink("The Strokes", "Index", "LayoutMediaPlayer", new { videos = "theStrokes" }, new { @class = "btn btn-danger" })
+            @*@Html.ActionLink("The Strokes", "Index", "LayoutMediaPlayer", new { videos = "theStrokes" }, new { @class = "btn btn-danger", @style = "width:500px; padding:20px" })*@
+
+            @Html.ActionLink("The Strokes", "Index", "LayoutMediaPlayer", new { videos = "theStrokes" }, new { @class = "btn btn-danger"})
 
             @Html.ActionLink("Telerik", "Index", "LayoutMediaPlayer", new { videos = "telerik" }, new { @class = "btn btn-danger" })
 
         </p>
     </div>
+
+    @*<script id="tree-view-template" type="text/x-kendo-template">
+                    @Html.ActionLink("The Strokes", "Index", "LayoutMediaPlayer", new { videos = "theStrokes" }, new { @class = "btn btn-danger" })
+
+    </script>
+
+    <script id="media-player-template" type="text/x-kendo-template">
+                    @Html.ActionLink("Telerik", "Index", "LayoutMediaPlayer", new { videos = "telerik" }, new { @class = "btn btn-danger" })
+
+    </script>
+
+    <div>
+
+        @(Html.Kendo().TileLayout()
+        .Name("tilelayout")
+        .Columns(6)
+        .RowsHeight("100px")
+        .ColumnsWidth("100px")
+        .Containers(c => {
+            c.Add().Header(h => h.Text("")).BodyTemplateId("tree-view-template").ColSpan(2).RowSpan(1);
+            c.Add().Header(h => h.Text("")).BodyTemplateId("media-player-template").ColSpan(2).RowSpan(1);
+            c.Add().Header(h => h.Text("")).BodyTemplateId("tree-view-template").ColSpan(2).RowSpan(1);
+        })
+        .Reorderable(false)
+        .Resizable(false)
+        )
+
+
+    </div>*@
 
 </div>
